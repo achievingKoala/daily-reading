@@ -597,13 +597,37 @@
           ["第9章 · 怎么知道你成功了", "数字变漂亮了，问题真的变少了吗？", "如果目标是减少损失，只追踪处理了多少次投诉，可能会把少记录投诉当成进步。还需要检查结果是否受外部趋势影响，以及指标是否仍然指向最初的目标。", "衡量预防成果时，要留心指标偏离目标和外部趋势造成的表面成功。"],
         ]
       },
+      {
+        book: "精准学习", author: "斯坦尼斯拉斯·迪昂", tag: "脑科学 · 学习", desc: "从认知神经科学出发，解释人脑如何习得新知识。", source: "https://www.dedao.cn/ebook/detail?id=EJmMZXq1b8qOpBlD69XAdP7LEGaKJWEDaB0xRnme5vrVzo4QMZYgNyk2jNA5467K", cards: [
+          ["第6章 · 脑的再利用", "人脑怎么学会阅读这种新本领？", "文字在人类历史上出现得相对晚。学阅读时，大脑把原本用于辨认图形的视觉回路与已有的口语回路连接起来，让纸上的符号逐渐能唤起声音和意义。", "新技能可以借用和改造原有的神经回路。"],
+          ["第7章 · 注意", "做听写时，为什么要先决定自己听什么？", "同一句录音里有词义、重音和词尾。第一遍听大意，第二遍专听动词结尾，能让原本被忽略的声音变得更容易察觉。", "注意会优先处理一部分信息。给自己一个具体任务，有助于把注意力放在要学的细节上。"],
+          ["第8章 · 主动参与", "看懂一道例题后，怎样知道自己真的会了？", "把解答遮住，试着写下下一步，并解释为什么这么做。解释卡住的地方，往往就是重看例题时最值得留意的部分。", "主动预测和解释，让学习者亲自处理信息，也让疑问暴露出来。"],
+          ["第9章 · 错误反馈", "只知道得了七分，下一次该练什么？", "两道听力题都错了，一道是漏听否定词，一道是把人名对错了。相同的扣分对应不同的练习重点，逐题核对才能看出区别。", "有效的反馈指出预期和结果之间的差距，帮助学习者调整下一次尝试。"],
+          ["第10章 · 巩固", "为什么今天练过的东西，睡一觉后还会变化？", "学习结束后，大脑仍在处理新记忆。书中讨论了睡眠期间对先前活动的重演，以及反复练习如何让原本费力的操作逐渐熟练。", "巩固让新学的内容更稳定，也能为后续更复杂的任务腾出注意力。"],
+        ]
+      },
+      {
+        book: "屡见屡鲜：在习惯化的日常之外", author: "塔利·沙罗特、卡斯·R. 桑斯坦", tag: "心理学 · 习惯化", desc: "解释人为什么会对重复的体验逐渐失去敏感，以及怎样重新察觉变化。", source: "https://www.dedao.cn/ebook/detail?id=rJRdy1qe4xAVBgZrvdGmz8ykaop6QWXekbv3EJnD7LR51qb2KY9NPMXOljVa28m5", cards: [
+          ["第1章 · 快乐", "为什么第一口冰激凌最好吃？", "第一口的凉意和甜味格外鲜明，接着吃，同样的味道却逐渐退到背景。隔一会儿再尝，那种感觉可能又清晰起来。", "对重复刺激的反应会减弱，短暂的间隔有时能恢复新鲜感。"],
+          ["第2章 · 变化", "为什么一次小小的改变也能让日子有意思？", "熟悉的日程省心，但一周过去时，几天的经历可能混在一起。改走一条回家路线，原本自动完成的一段路又有了值得留意的细节。", "变化和探索本身可以丰富生活体验，这也是本章在幸福与意义之外讨论的维度。"],
+          ["第5章 · 创造力", "换个地方工作，为什么有时能想到新办法？", "在同一张桌子上反复琢磨一个问题，思路也容易回到同样的几个选项。换个环境重新看材料，有时会注意到原本跳过的细节。", "改变环境或看问题的方式，可能打断习惯化的思路，为新的联想腾出空间。"],
+          ["第7章 · （错误）信息", "听过很多次的话，为什么越来越像真的？", "同一句说法反复出现在不同场合，读起来会越来越顺。回想自己为什么相信它时，很容易把这种熟悉感误当成见过可靠证据。", "重复能增加熟悉感。检查原始证据，才能判断说法本身是否可信。"],
+          ["第9章 · 环境", "为什么刚进门闻到的气味，过一会儿就忘了？", "初到一个地方，气味很容易引起注意。待久了，自己可能几乎闻不到，刚来的访客却仍能立刻察觉。", "感受变淡有时来自习惯化。评估环境有没有改善，还需要观察实际条件。"],
+        ]
+      },
     ];
-    // Show one chapter from each book per round.
-    const cards = [0, 1, 2].flatMap(round => books.map(book => {
-      const [chapter, title, passage, summary] = book.cards[round];
-      return { id: book.book + ":" + chapter, book, chapter, title, passage, summary };
-    }));
+    // Show one chapter from each book per round, skipping books with no chapter left.
+    const cards = [];
+    const rounds = Math.max(...books.map(book => book.cards.length));
+    for (let round = 0; round < rounds; round++) {
+      for (const book of books) {
+        if (round >= book.cards.length) continue;
+        const [chapter, title, passage, summary] = book.cards[round];
+        cards.push({ id: book.book + ":" + chapter, book, chapter, title, passage, summary });
+      }
+    }
     const $ = id => document.getElementById(id);
+    let activeCards = cards;
     let current = 0, viewed = 1;
     const favoritesKey = "bookDiscoveryFavoritesV2";
     const favorites = loadFavorites();
@@ -638,8 +662,8 @@
     const searchUrl = title => "https://weread.qq.com/web/search/books?keyword=" + encodeURIComponent(title);
     const dedaoSearchUrl = title => "https://www.dedao.cn/search/result?q=" + encodeURIComponent(title);
     function render() {
-      const { book: b, chapter, title, passage, summary } = cards[current];
-      $("tag").textContent = b.tag; $("count").textContent = String(current + 1).padStart(2, "0") + " / " + String(cards.length).padStart(2, "0");
+      const { book: b, chapter, title, passage, summary } = activeCards[current];
+      $("tag").textContent = b.tag; $("count").textContent = String(current + 1).padStart(2, "0") + " / " + String(activeCards.length).padStart(2, "0");
       $("title").textContent = title; $("passage").textContent = passage; $("summary").textContent = summary;
       $("book-title").textContent = "《" + b.book + "》"; $("author").textContent = b.author; $("book-desc").textContent = b.desc;
       $("read-link").href = searchUrl(b.book);
@@ -648,13 +672,28 @@
       $("source-link").href = b.source;
       $("reveal").hidden = true; $("like").disabled = false; $("like").lastChild.textContent = "感兴趣，看看是什么书";
       $("viewed").textContent = "已探索 " + viewed + " 张卡片";
-      $("progress").textContent = books.length + " 本书 · " + cards.length + " 张卡片";
+      $("progress").textContent = (activeCards === cards ? books.length : 1) + " 本书 · " + activeCards.length + " 张卡片";
       renderSave();
     }
-    $("skip").addEventListener("click", () => { const card = $("card"); card.classList.add("swap"); setTimeout(() => { current = (current + 1) % cards.length; viewed++; render(); card.classList.remove("swap") }, 120) });
-    $("like").addEventListener("click", () => { $("reveal").hidden = false; $("like").disabled = true; $("like").lastChild.textContent = "已找到这本书"; });
+    let skipTimer;
+    $("skip").addEventListener("click", () => {
+      clearTimeout(skipTimer);
+      $("card").classList.add("swap");
+      skipTimer = setTimeout(() => {
+        current = (current + 1) % activeCards.length;
+        viewed++;
+        render();
+        $("card").classList.remove("swap");
+      }, 120);
+    });
+    function revealBook() {
+      $("reveal").hidden = false;
+      $("like").disabled = true;
+      $("like").lastChild.textContent = "已找到这本书";
+    }
+    $("like").addEventListener("click", revealBook);
     $("save").addEventListener("click", () => {
-      const { id } = cards[current];
+      const { id } = activeCards[current];
       if (favorites.has(id)) favorites.delete(id);
       else favorites.add(id);
       try {
@@ -662,7 +701,41 @@
       } catch { }
       renderSave();
     });
-    function renderSave() { const saved = favorites.has(cards[current].id); $("save").setAttribute("aria-pressed", String(saved)); $("save").firstChild.textContent = saved ? "♥ 已收藏" : "♡ 收藏这张卡片 "; $("saved-count").textContent = favorites.size ? "(" + favorites.size + ")" : ""; }
+    function renderSave() { const saved = favorites.has(activeCards[current].id); $("save").setAttribute("aria-pressed", String(saved)); $("save").firstChild.textContent = saved ? "♥ 已收藏" : "♡ 收藏这张卡片 "; $("saved-count").textContent = favorites.size ? "(" + favorites.size + ")" : ""; }
+    window.debugBook = function (title, cardNumber = 1) {
+      if (title === undefined) {
+        console.table(books.map(book => ({ 书名: book.book, 卡片数: book.cards.length })));
+        return;
+      }
+      const query = String(title).trim().replace(/^《(.*)》$/, "$1");
+      const exact = books.find(book => book.book === query);
+      const matches = exact ? [exact] : books.filter(book => query && book.book.includes(query));
+      if (matches.length !== 1) {
+        console.warn(matches.length ? "书名匹配到多本书，请输入全名。" : "找不到这本书。运行 debugBook() 查看书名。");
+        if (matches.length) console.table(matches.map(book => ({ 书名: book.book })));
+        return;
+      }
+      const [book] = matches;
+      const bookCards = cards.filter(card => card.book === book);
+      if (cardNumber === "list") {
+        console.table(bookCards.map((card, index) => ({ 序号: index + 1, 章节: card.chapter, 卡片标题: card.title })));
+        return;
+      }
+      const showAll = cardNumber === "all";
+      if (!showAll && (!Number.isInteger(cardNumber) || cardNumber < 1 || cardNumber > bookCards.length)) {
+        console.warn(`《${book.book}》的卡片序号为 1–${bookCards.length}。`);
+        return;
+      }
+      clearTimeout(skipTimer);
+      $("card").classList.remove("swap");
+      activeCards = showAll ? bookCards : cards;
+      const card = bookCards[showAll ? 0 : cardNumber - 1];
+      current = activeCards.indexOf(card);
+      render();
+      revealBook();
+      $("card").scrollIntoView({ block: "start" });
+      return { 书名: book.book, 序号: showAll ? 1 : cardNumber, 章节: card.chapter, 卡片标题: card.title };
+    };
     render();
   </script>
 </body>
