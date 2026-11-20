@@ -19,7 +19,7 @@
     .card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.tag{font-size:12px;color:#4d755e;background:#ecf3eb;border-radius:99px;padding:7px 12px;font-weight:600}.count{color:#aaa89f;font-size:12px;font-variant-numeric:tabular-nums}
     h2{font-family:Georgia,"Songti SC",serif;font-weight:700;letter-spacing:.3px;font-size:clamp(25px,3vw,31px);line-height:1.52;margin:27px 0 20px}.rule{width:33px;height:3px;background:#d0ac6f;border-radius:3px;margin-bottom:23px}
     .passage{font-family:Georgia,"Songti SC",serif;font-size:17px;line-height:2.1;margin:0;color:#45463f}.section-label{font-size:11px;letter-spacing:2px;color:#aaa395;margin:25px 0 10px;font-weight:700}.summary{font-size:14px;line-height:1.9;color:#76776e;margin:0}
-    .chapter{font-size:13px;line-height:1.6;color:#426a55;margin:15px 0 0}.source-link{display:inline-block;margin:12px 0 0 12px;color:#355943;font-size:13px;text-underline-offset:3px}
+    .chapter{font-size:13px;line-height:1.6;color:#426a55;margin:15px 0 0}.source-link[hidden]{display:none}.source-link{display:inline-block;margin:12px 0 0 12px;color:#355943;font-size:13px;text-underline-offset:3px}
     .attribution{margin-top:auto;padding-top:27px;color:#aaa69b;font-size:11px}
     .reveal{margin-top:24px;border-top:1px solid #eae8df;padding-top:21px;animation:appear .24s ease-out}.reveal[hidden]{display:none}.reveal-label{font-size:12px;color:#8c8b7f;margin-bottom:12px}.book-info{display:flex;gap:17px;align-items:center}.cover{flex:none;background:linear-gradient(145deg,#466855,#253e35);color:#f7efdc;width:72px;height:97px;border-radius:3px 7px 7px 3px;display:grid;place-items:center;box-shadow:3px 4px 9px #0002;border-left:5px solid #24382c}.cover svg{width:27px;height:27px}.book-info h3{font-family:Georgia,"Songti SC",serif;font-size:18px;margin:0 0 5px}.author{font-size:12px;color:#98978e;margin:0 0 8px}.book-desc{font-size:13px;color:#74766e;line-height:1.65;margin:0}.read-link{display:inline-flex;justify-content:center;align-items:center;gap:7px;margin-top:18px;padding:12px 17px;border-radius:9px;background:#355943;color:#fff;text-decoration:none;font-size:13px;font-weight:600}.read-link:hover{background:#274532}
     .actions{display:flex;gap:13px;margin-top:24px;width:min(100%,650px)}.btn{border:1px solid #dedbd0;border-radius:12px;padding:15px 16px;background:#fffdfa;color:#58594f;display:flex;align-items:center;justify-content:center;gap:11px;font-size:14px;font-weight:650;flex:1;box-shadow:0 2px 5px #00000005;transition:transform .15s,background .15s}.btn:hover{transform:translateY(-2px)}.btn.primary{background:#355943;color:white;border-color:#355943}.btn.primary:hover{background:#294935}.btn.primary[disabled]{opacity:.7;cursor:default;transform:none}.btn svg{width:18px;height:18px}
@@ -48,8 +48,9 @@
         <div class="reveal-label">你刚刚发现了一本书</div>
         <div class="book-info"><div class="cover" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.5c-3-2-6.5-2-10-1v13c3.5-1 7-1 10 1 3-2 6.5-2 10-1v-13c-3.5-1-7-1-10 1zm0 0v13"/></svg></div><div><h3 id="book-title"></h3><p class="author" id="author"></p><p class="book-desc" id="book-desc"></p></div></div>
         <p id="chapter" class="chapter"></p>
-        <a id="read-link" class="read-link" href="#" target="_blank" rel="noopener noreferrer">查找原书与阅读渠道 <span aria-hidden="true">↗</span></a>
-        <a id="source-link" class="source-link" href="#" target="_blank" rel="noopener noreferrer">查看章节参考 <span aria-hidden="true">↗</span></a>
+        <a id="read-link" class="read-link" href="https://weread.qq.com/" target="_blank" rel="noopener noreferrer">在微信读书搜索此书 <span aria-hidden="true">↗</span></a>
+        <a id="dedao-link" class="read-link" href="https://www.dedao.cn/" target="_blank" rel="noopener noreferrer">在得到搜索此书 <span aria-hidden="true">↗</span></a>
+        <a id="source-link" class="source-link" href="#" target="_blank" rel="noopener noreferrer" hidden>查看章节参考 <span aria-hidden="true">↗</span></a>
       </section>
       <div class="attribution">✧ 本站卡片为原创内容概括，并非原书逐字摘录</div>
     </article>
@@ -147,12 +148,15 @@
       return new Set();
     }
   }
-  const searchUrl = title => "https://www.google.com/search?q=" + encodeURIComponent(title + " 图书 正版阅读 试读");
+  const searchUrl = title => "https://weread.qq.com/web/search/books?keyword=" + encodeURIComponent(title);
+  const dedaoSearchUrl = title => "https://www.dedao.cn/search/result?q=" + encodeURIComponent(title);
   function render(){
     const {book: b, chapter, title, passage, summary} = cards[current];
     $("tag").textContent=b.tag;$("count").textContent=String(current+1).padStart(2,"0")+" / "+String(cards.length).padStart(2,"0");
     $("title").textContent=title;$("passage").textContent=passage;$("summary").textContent=summary;
-    $("book-title").textContent="《"+b.book+"》";$("author").textContent=b.author;$("book-desc").textContent=b.desc;$("read-link").href=searchUrl(b.book);
+    $("book-title").textContent="《"+b.book+"》";$("author").textContent=b.author;$("book-desc").textContent=b.desc;
+    $("read-link").href=searchUrl(b.book);
+    $("dedao-link").href=dedaoSearchUrl(b.book);
     $("chapter").textContent="章节出处 · "+chapter;
     $("source-link").href=b.source;
     $("reveal").hidden=true;$("like").disabled=false;$("like").lastChild.textContent="感兴趣，看看是什么书";
