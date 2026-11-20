@@ -19,10 +19,11 @@
     .card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.tag{font-size:12px;color:#4d755e;background:#ecf3eb;border-radius:99px;padding:7px 12px;font-weight:600}.count{color:#aaa89f;font-size:12px;font-variant-numeric:tabular-nums}
     h2{font-family:Georgia,"Songti SC",serif;font-weight:700;letter-spacing:.3px;font-size:clamp(25px,3vw,31px);line-height:1.52;margin:27px 0 20px}.rule{width:33px;height:3px;background:#d0ac6f;border-radius:3px;margin-bottom:23px}
     .passage{font-family:Georgia,"Songti SC",serif;font-size:17px;line-height:2.1;margin:0;color:#45463f}.section-label{font-size:11px;letter-spacing:2px;color:#aaa395;margin:25px 0 10px;font-weight:700}.summary{font-size:14px;line-height:1.9;color:#76776e;margin:0}
+    .chapter{font-size:13px;line-height:1.6;color:#426a55;margin:15px 0 0}.source-link{display:inline-block;margin:12px 0 0 12px;color:#355943;font-size:13px;text-underline-offset:3px}
     .attribution{margin-top:auto;padding-top:27px;color:#aaa69b;font-size:11px}
     .reveal{margin-top:24px;border-top:1px solid #eae8df;padding-top:21px;animation:appear .24s ease-out}.reveal[hidden]{display:none}.reveal-label{font-size:12px;color:#8c8b7f;margin-bottom:12px}.book-info{display:flex;gap:17px;align-items:center}.cover{flex:none;background:linear-gradient(145deg,#466855,#253e35);color:#f7efdc;width:72px;height:97px;border-radius:3px 7px 7px 3px;display:grid;place-items:center;box-shadow:3px 4px 9px #0002;border-left:5px solid #24382c}.cover svg{width:27px;height:27px}.book-info h3{font-family:Georgia,"Songti SC",serif;font-size:18px;margin:0 0 5px}.author{font-size:12px;color:#98978e;margin:0 0 8px}.book-desc{font-size:13px;color:#74766e;line-height:1.65;margin:0}.read-link{display:inline-flex;justify-content:center;align-items:center;gap:7px;margin-top:18px;padding:12px 17px;border-radius:9px;background:#355943;color:#fff;text-decoration:none;font-size:13px;font-weight:600}.read-link:hover{background:#274532}
     .actions{display:flex;gap:13px;margin-top:24px;width:min(100%,650px)}.btn{border:1px solid #dedbd0;border-radius:12px;padding:15px 16px;background:#fffdfa;color:#58594f;display:flex;align-items:center;justify-content:center;gap:11px;font-size:14px;font-weight:650;flex:1;box-shadow:0 2px 5px #00000005;transition:transform .15s,background .15s}.btn:hover{transform:translateY(-2px)}.btn.primary{background:#355943;color:white;border-color:#355943}.btn.primary:hover{background:#294935}.btn.primary[disabled]{opacity:.7;cursor:default;transform:none}.btn svg{width:18px;height:18px}
-    .footer-row{width:min(100%,650px);display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:21px;font-size:12px;color:#a7a398}.progress{display:flex;align-items:center;gap:7px}.dot{width:5px;height:5px;border-radius:50%;background:#d6d5cb}.dot.active{background:#4e775c;width:15px;border-radius:8px}.save{background:transparent;border:0;color:#8f9084;padding:5px 0;display:flex;align-items:center;gap:5px;font-size:12px}.save[aria-pressed="true"]{color:#355943;font-weight:700}
+    .footer-row{width:min(100%,650px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:21px;font-size:12px;color:#a7a398}.progress{color:#52705d;font-variant-numeric:tabular-nums;white-space:nowrap}.save{background:transparent;border:0;color:#8f9084;padding:5px 0;display:flex;align-items:center;gap:5px;font-size:12px}.save[aria-pressed="true"]{color:#355943;font-weight:700}
     .note{font-size:11px;line-height:1.6;max-width:650px;color:#a19f96;text-align:center;margin-top:35px}svg{vertical-align:middle}@keyframes appear{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
     @media(max-width:600px){.site{padding:20px 17px 30px}main{margin-top:42px}.top-note{font-size:11px}.hero{margin-top:12px}.subtitle{margin-bottom:26px}.card{padding:27px 23px 25px;min-height:470px}h2{margin-top:23px;font-size:25px}.passage{font-size:16px}.actions{gap:10px}.btn{font-size:13px;padding:15px 8px}.note{margin-top:22px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
@@ -46,7 +47,9 @@
       <section class="reveal" id="reveal" hidden>
         <div class="reveal-label">你刚刚发现了一本书</div>
         <div class="book-info"><div class="cover" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.5c-3-2-6.5-2-10-1v13c3.5-1 7-1 10 1 3-2 6.5-2 10-1v-13c-3.5-1-7-1-10 1zm0 0v13"/></svg></div><div><h3 id="book-title"></h3><p class="author" id="author"></p><p class="book-desc" id="book-desc"></p></div></div>
+        <p id="chapter" class="chapter"></p>
         <a id="read-link" class="read-link" href="#" target="_blank" rel="noopener noreferrer">查找原书与阅读渠道 <span aria-hidden="true">↗</span></a>
+        <a id="source-link" class="source-link" href="#" target="_blank" rel="noopener noreferrer">查看章节参考 <span aria-hidden="true">↗</span></a>
       </section>
       <div class="attribution">✧ 本站卡片为原创内容概括，并非原书逐字摘录</div>
     </article>
@@ -54,38 +57,121 @@
       <button class="btn" id="skip" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 7v5h-5"/><path d="M4.9 9a8 8 0 0 1 13.4-2L20 12M4 17v-5h5"/><path d="M19.1 15a8 8 0 0 1-13.4 2L4 12"/></svg>不感兴趣，换一张</button>
       <button class="btn primary" id="like" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>感兴趣，看看是什么书</button>
     </div>
-    <div class="footer-row"><span id="viewed">已探索 1 张卡片</span><span class="progress" id="progress" aria-label="卡片位置"></span><button class="save" id="save" type="button" aria-pressed="false">♡ 收藏这张卡片 <span id="saved-count"></span></button></div>
-    <p class="note">演示版本：书籍推荐链接为公开搜索结果，并不保证有免费全文。正式上线时建议接入正版试读或出版方授权链接。</p>
+    <div class="footer-row"><span id="viewed">已探索 1 张卡片</span><span class="progress" id="progress"></span><button class="save" id="save" type="button" aria-pressed="false">♡ 收藏这张卡片 <span id="saved-count"></span></button></div>
+    <p class="note">不同译本的章节编号和标题可能有差异。</p>
   </main>
 </div>
 <script>
   const books = [
-    {tag:"心理学 · 决策",title:"为什么我们总是对失去的东西念念不忘？",passage:"丢失一百元带来的难过，常常超过意外得到一百元的快乐。我们并不是用同一把尺子衡量收益和损失，这种不对称会悄悄改变购物、投资和日常生活里的决定。",summary:"所谓“损失厌恶”，解释了为什么人们有时宁愿守住已有的东西，也不愿尝试可能更好的机会。",book:"思考，快与慢",author:"丹尼尔·卡尼曼",desc:"从心理学实验出发，认识直觉、判断与认知偏差。"},
-    {tag:"财富 · 创业",title:"为什么努力工作，并不一定能让人变得富有？",passage:"如果收入永远等于工作时长乘以时薪，那么一天只有二十四小时，就会成为无法突破的边界。创造一件能够重复被使用的产品，也许会改变价值与时间之间的关系。",summary:"借助代码、产品、资本和传播等杠杆，让创造的价值不只取决于亲自投入的时间。",book:"纳瓦尔宝典",author:"埃里克·乔根森 编",desc:"关于财富、判断力、杠杆与幸福的思考。"},
-    {tag:"哲学 · 风险",title:"一个从不犯错的系统，为什么可能最危险？",passage:"如果所有小故障都被掩盖，一个系统看上去会非常稳定。但那些没有得到释放的压力，可能会在看不见的地方不断积累，最终带来更大的冲击。",summary:"不确定性未必只有坏处。有些系统能够在波动和压力中学习、调整，甚至变得更强。",book:"反脆弱",author:"纳西姆·尼古拉斯·塔勒布",desc:"重新理解风险、不确定性以及面对变化的能力。"},
-    {tag:"习惯 · 成长",title:"为什么改变人生的，可能是每天微不足道的一件小事？",passage:"一次短短的阅读、一段五分钟的练习，今天未必看得出效果。但当它们成为生活中不需要反复做决定的习惯，就会逐渐积累出惊人的差异。",summary:"与其只靠意志力追求宏大的目标，不如设计一个更容易持续行动的系统。",book:"原子习惯",author:"詹姆斯·克利尔",desc:"从环境、行为反馈和微习惯入手，建立持续改变的机制。"},
-    {tag:"历史 · 社会",title:"为什么陌生人能够共同相信同一个故事？",passage:"当大量不曾见面的人共同相信某种制度、符号或者观念时，他们就能够跨越熟人关系进行合作。许多看似理所当然的社会组织方式，都建立在这样的共同想象之上。",summary:"人类大规模协作的重要能力之一，是围绕共同认可的叙事建立秩序。",book:"人类简史",author:"尤瓦尔·赫拉利",desc:"从认知革命到现代社会，讨论人类如何发展出大规模合作。"},
-    {tag:"思维 · 学习",title:"为什么越熟悉一个知识点，反而可能越高估自己？",passage:"当一个解释听起来流畅，我们常常把“听懂了”误当成“自己也能说清楚”。直到必须独立回答一个问题，才发现理解中存在许多空白。",summary:"真正的学习不仅是反复接触信息，还要主动提取、解释、检验自己的理解。",book:"认知天性",author:"彼得·布朗、亨利·罗迪格、马克·麦克丹尼尔",desc:"结合认知科学研究，介绍更有效的记忆与学习策略。"}
+    { book: "思考，快与慢", author: "丹尼尔·卡尼曼", tag: "心理学 · 决策", desc: "从心理学实验出发，认识直觉、判断与认知偏差。", source: "https://openlibrary.org/books/OL25426844M/Thinking_Fast_and_Slow", cards: [
+      ["第26章 · 前景理论", "为什么我们总是对失去的东西念念不忘？", "丢失一百元带来的难过，常常超过意外得到一百元的快乐。我们并不是用同一把尺子衡量收益和损失，这种不对称会悄悄改变购物、投资和日常生活里的决定。", "所谓“损失厌恶”，解释了为什么人们有时宁愿守住已有的东西，也不愿尝试可能更好的机会。"],
+      ["第11章 · 锚定效应", "为什么刚看到的价格会影响你出价？", "先看到一件商品标价两千元，再看到一千元的售价，后一笔钱就显得容易接受。即使第一眼看到的数字和实际价值关系不大，判断也可能围着它展开。", "先出现的数字会给估计提供一个参照点。"],
+      ["第27章 · 禀赋效应", "为什么自己的杯子一转手就更贵？", "拿到杯子的人往往要价更高，而还没有杯子的人愿意支付的价格较低。两个人面对的是同样的杯子，但只有其中一个已经拥有它。", "拥有一件东西会改变交易的参照点，也会改变放弃它的感受。"],
+    ] },
+    { book: "纳瓦尔宝典", author: "埃里克·乔根森 编", tag: "财富 · 创业", desc: "关于财富、判断力、杠杆与幸福的思考。", source: "https://www.navalmanack.com/almanack-of-naval-ravikant/table-of-contents", cards: [
+      ["财富篇 · 寻找杠杆（Find a Position of Leverage）", "为什么努力工作，并不一定能让人变得富有？", "如果收入永远等于工作时长乘以时薪，那么一天只有二十四小时，就会成为无法突破的边界。创造一件能够重复被使用的产品，也许会改变价值与时间之间的关系。", "借助代码、产品、资本和传播等杠杆，让创造的价值不只取决于亲自投入的时间。"],
+      ["财富篇 · 寻找并建立专长（Find and Build Specific Knowledge）", "别人眼里的苦差事，你做起来像在玩吗？", "有人反复琢磨一类问题，是因为真心好奇。久而久之，兴趣与亲手做过的事交织起来，形成别人很难照着课表复制的本事。", "纳瓦尔把这种由兴趣和经验积累出的能力视为个人专长。"],
+      ["财富篇 · 靠判断力获得报酬（Get Paid for Your Judgment）", "为什么一次判断值那么多钱？", "同一个决定，放在小团队里也许只影响一天。手上有资本、软件或大量用户时，它的好处和代价都会被放大。", "杠杆越大，判断的方向以及做决定的时机越重要。"],
+    ] },
+    { book: "反脆弱", author: "纳西姆·尼古拉斯·塔勒布", tag: "哲学 · 风险", desc: "重新理解风险、不确定性以及面对变化的能力。", source: "https://www.penguinrandomhouse.com/books/176227/antifragile-by-nassim-nicholas-taleb/", cards: [
+      ["第6章 · 告诉他们我爱随机性（Tell Them I Love Randomness）", "一个从不犯错的系统，为什么可能最危险？", "如果所有小故障都被掩盖，一个系统看上去会非常稳定。但那些没有得到释放的压力，可能会在看不见的地方不断积累，最终带来更大的冲击。", "不确定性未必只有坏处。有些系统能够在波动和压力中学习、调整，甚至变得更强。"],
+      ["第5章 · 露天市场与办公室（The Souk and the Office）", "收入每月都一样，真的更安全吗？", "自由职业者每个月的进账有高有低，能从小起伏里察觉市场变化。固定薪水看起来平稳，但失业时，收入可能一下子中断。", "评估稳定性，还要看损失是经常小幅发生，还是偶尔集中到来。"],
+      ["第12章 · 泰勒斯的甜葡萄（Thales’ Sweet Grapes）", "怎样为一个可能到来的好年景留位置？", "泰勒斯先用较小的代价订下榨油设备的使用权。橄榄丰收时，压榨需求增加，他拥有了可以利用的机会。", "选择权的价值来自保留行动余地，同时把不利情形下的代价控制在可承受范围。"],
+    ] },
+    { book: "原子习惯", author: "詹姆斯·克利尔", tag: "习惯 · 成长", desc: "从环境、行为反馈和微习惯入手，建立持续改变的机制。", source: "https://jamesclear.com/atomic-habits-summary", cards: [
+      ["第1章 · 微习惯的惊人力量", "为什么改变人生的，可能是每天微不足道的一件小事？", "一次短短的阅读、一段五分钟的练习，今天未必看得出效果。但当它们成为生活中不需要反复做决定的习惯，就会逐渐积累出惊人的差异。", "与其只靠意志力追求宏大的目标，不如设计一个更容易持续行动的系统。"],
+      ["第4章 · 开始新习惯的最佳方式", "怎样让“我应该运动”变成一件可以赴约的事？", "把打算写成周一晚饭后到楼下走十分钟。等那个时刻到了，你可以直接行动，少做一次关于何时开始的决定。", "为行为提前指定时间和地点，让意愿有一个明确的触发条件。"],
+      ["第13章 · 用两分钟规则停止拖延", "只读一页，为什么仍然值得开始？", "如果一想到要读半小时就推迟，可以先把任务缩成翻开书读一页。你先练熟的是开始这一步，后面的分量可以慢慢增加。", "把入口变轻，有助于降低每次开始需要跨过的门槛。"],
+    ] },
+    { book: "人类简史", author: "尤瓦尔·赫拉利", tag: "历史 · 社会", desc: "从认知革命到现代社会，讨论人类如何发展出大规模合作。", source: "https://www.ynharari.com/sapiens-references/", cards: [
+      ["第2章 · 知识之树", "为什么陌生人能够共同相信同一个故事？", "当大量不曾见面的人共同相信某种制度、符号或者观念时，他们就能够跨越熟人关系进行合作。许多看似理所当然的社会组织方式，都建立在这样的共同想象之上。", "人类大规模协作的重要能力之一，是围绕共同认可的叙事建立秩序。"],
+      ["第6章 · 盖起金字塔", "一套秩序如何变成生活里理所当然的安排？", "人们从法律、教育和日常习惯中学会哪些事被允许、谁有权做决定。长久处在同一套安排中，它的来历也容易被忽略。", "想象的秩序可以通过制度延续，并产生真实的行为后果。"],
+      ["第10章 · 金钱的味道", "语言不通的人为什么也能做买卖？", "你愿意收下钱，往往是因为相信它还能交给另一个人，换回自己需要的东西。买家和卖家可以有完全不同的信仰，却认可这种交换。", "货币把对陌生人的信任，部分转成了对共同交换媒介的信任。"],
+    ] },
+    { book: "认知天性", author: "彼得·布朗、亨利·罗迪格、马克·麦克丹尼尔", tag: "思维 · 学习", desc: "结合认知科学研究，介绍更有效的记忆与学习策略。", source: "https://www.retrievalpractice.org/make-it-stick", cards: [
+      ["第1章 · 重新认识学习（Learning Is Misunderstood）", "为什么越熟悉一个知识点，反而可能越高估自己？", "当一个解释听起来流畅，我们常常把“听懂了”误当成“自己也能说清楚”。直到必须独立回答一个问题，才发现理解中存在许多空白。", "真正的学习不仅是反复接触信息，还要主动提取、解释、检验自己的理解。"],
+      ["第2章 · 学会提取（To Learn, Retrieve）", "为什么合上书以后才算开始练习？", "读完一段后，先合上书，把记得的要点讲给自己听。想不起来的地方可以回去核对，下次再试着独立说出来。", "从记忆里主动取出信息，本身就是强化记忆的练习。"],
+      ["第3章 · 混合练习（Mix Up Your Practice）", "为什么把题型打散，练起来更吃力？", "同类题连做时，你很容易沿用上一题的方法。把需要不同解法的问题混在一起，每次就要先判断这一题属于哪一种。", "交错练习多练了一步：辨别什么时候该用哪种方法。"],
+    ] },
+    { book: "怪诞行为学", author: "丹·艾瑞里", tag: "心理学 · 消费", desc: "用行为实验解释价格、免费和比较如何改变日常决定。", source: "https://discover.library.unt.edu/catalog/b3793868", cards: [
+      ["第1章 · 相对性的真相（The Truth about Relativity）", "为什么没人想买的套餐也会影响销量？", "一个只含纸刊的订阅选项，价格和纸刊加电子版的组合一样。即使没人选只含纸刊的方案，它也让组合方案显得更划算。", "人往往借助容易比较的选项来判断价值，新增的选项本身就可能改变选择。"],
+      ["第2章 · 供求关系的谬误（The Fallacy of Supply and Demand）", "社保号码也能影响出价吗？", "实验让参与者先写下社保号码末两位，再想象用这个数字为商品出价，最后报出自己愿付的金额。末两位较大的人往往也报出了更高的价格。", "与商品无关的初始数字也可能成为价格锚点，之后的出价容易围着它调整。"],
+      ["第3章 · 免费的代价（The Cost of Zero Cost）", "为什么便宜一分钱，可能让选择完全翻转？", "两种巧克力同时降价一分钱，价格差没有变。但其中一种变成免费后，许多原先愿意买更好巧克力的人转向了免费选项。", "零价格带来的吸引力可能让人忽略实际偏好和其他代价。"],
+    ] },
+    { book: "影响力", author: "罗伯特·西奥迪尼", tag: "心理学 · 说服", desc: "借助实验和现实案例，解释人们答应请求时常用的判断线索。", source: "https://www.oreilly.com/library/view/influence/9780061899874/text/9780061899874_Contents.xhtml", cards: [
+      ["第2章 · 互惠（Reciprocation）", "没开口要的小礼物，为什么也会让人想回礼？", "在一项实验里，有人被主动送了一瓶汽水。后来送汽水的人推销抽奖券，收过汽水的人更愿意买，哪怕原本并不喜欢他。", "收到好处会唤起回报的义务感，连没有主动索取的好处也可能产生这种压力。"],
+      ["第4章 · 社会认同（Social Proof）", "围观的人越多，为什么越难等到第一个帮忙的人？", "遇到含糊的紧急情况，旁观者会看其他人表现是否紧张。每个人都暂时按兵不动时，这种平静又成了别人判断事情不严重的线索。", "当所有人都在看别人怎么做，群体的沉默可能放大误判。"],
+      ["第7章 · 稀缺（Scarcity）", "同一块饼干，为什么放在快空的罐子里更诱人？", "实验参与者面对装得多或少的饼干罐，罐子里的饼干其实一样。数量少时，人们往往认为它更值得要。", "某样东西变得难以取得时，可获得性的变化容易被当成价值变化。"],
+    ] },
+    { book: "贫穷的本质", author: "阿比吉特·班纳吉、埃丝特·迪弗洛", tag: "经济学 · 贫困", desc: "从实地研究和随机实验出发，考察贫困家庭面对的具体选择。", source: "https://library.cnr.edu.bt/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=9009", cards: [
+      ["第2章 · 十亿饥饿人口？（A Billion Hungry People?）", "预算多一点，餐桌上的热量就会多一点吗？", "作者讨论一项主食补贴研究。主食变便宜后，有些家庭把省下的钱用来改善食物口味和种类，热量摄入未必因此上升。", "只计算最便宜的热量，会漏掉食物的口味、种类和家庭对饮食质量的判断。"],
+      ["第3章 · 改善全球健康，容易摘到的果实？（Low-Hanging Fruit for Better (Global) Health?）", "免费接种疫苗，为什么还会一拖再拖？", "在印度拉贾斯坦邦，研究人员安排定期开门的接种点。有的村庄还给来接种的家庭小份食物奖励，完成接种的比例进一步提高。", "当健康收益很远、来回和等待的成本就在眼前，可靠的服务和小奖励都可能改变行动。"],
+      ["第7章 · 向穷人放贷的经济学（The Men from Kabul and the Eunuchs of India）", "为什么小额贷款常常要按周还？", "频繁还款和小组聚会能帮助贷款机构追踪进度、控制违约。但开始还款的时间太早，也会让回报需要较久的生意更难负担贷款。", "贷款能否帮上忙，还取决于还款日程是否适合借款人的现金流。"],
+    ] },
+    { book: "金钱心理学", author: "摩根·豪泽尔", tag: "心理学 · 金钱", desc: "从个人经历、运气和风险讲起，探讨金钱决策背后的行为。", source: "https://harriman.house/books/the-psychology-of-money/", cards: [
+      ["第2章 · 运气与风险（Luck & Risk）", "成功经验里，哪一部分真的能学？", "两个人做了相似的决定，结果仍可能不同。回头只看获胜的人，很容易把外部机遇算进他的本领，把失败者遇到的风险算成他的过错。", "评价一个决策时，要把当时可知的信息和后来才出现的结果分开。"],
+      ["第5章 · 致富与守富（Getting Wealthy vs. Staying Wealthy）", "擅长赚钱的人，为什么还要重新学习守钱？", "创造财富常依赖尝试和承担风险，保有财富却需要避开一次足以让计划终止的损失。此前奏效的冒险，在积累变多后可能有完全不同的后果。", "长期积累取决于能否持续留在场内，单次收益大小只是其中一环。"],
+      ["第13章 · 留出容错空间（Room for Error）", "一份预算为什么要允许自己算错？", "收入可能比预计更晚到账，开支也可能比想象中高。如果账本只有在每项数字都准确时才成立，一件小意外就足以让安排失效。", "留出余量，是让计划在预测失准时依然可以执行。"],
+    ] },
   ];
+  // Show one chapter from each book per round.
+  const cards = [0, 1, 2].flatMap(round => books.map(book => {
+    const [chapter, title, passage, summary] = book.cards[round];
+    return { id: book.book + ":" + chapter, book, chapter, title, passage, summary };
+  }));
   const $ = id => document.getElementById(id);
   let current = 0, viewed = 1;
-  let favorites = new Set();
-  try { favorites = new Set(JSON.parse(localStorage.getItem("bookDiscoveryFavorites") || "[]")); } catch(e) {}
+  const favoritesKey = "bookDiscoveryFavoritesV2";
+  const favorites = loadFavorites();
+
+  function loadFavorites() {
+    try {
+      const stored = localStorage.getItem(favoritesKey);
+      if (stored !== null) {
+        const ids = new Set(JSON.parse(stored));
+        return new Set(cards.filter(card => ids.has(card.id)).map(card => card.id));
+      }
+
+      // The previous library had 30 books per round. Only its first six books are still listed.
+      const positions = JSON.parse(localStorage.getItem("bookDiscoveryFavorites") || "[]");
+      const ids = new Set();
+      for (const position of positions) {
+        if (!Number.isInteger(position) || position < 0 || position >= 90) continue;
+        const bookIndex = position % 30;
+        if (bookIndex >= 6) continue;
+        const round = Math.floor(position / 30);
+        ids.add(cards[round * books.length + bookIndex].id);
+      }
+      return ids;
+    } catch {
+      return new Set();
+    }
+  }
   const searchUrl = title => "https://www.google.com/search?q=" + encodeURIComponent(title + " 图书 正版阅读 试读");
   function render(){
-    const b=books[current];
-    $("tag").textContent=b.tag;$("count").textContent=String(current+1).padStart(2,"0")+" / "+String(books.length).padStart(2,"0");
-    $("title").textContent=b.title;$("passage").textContent=b.passage;$("summary").textContent=b.summary;
+    const {book: b, chapter, title, passage, summary} = cards[current];
+    $("tag").textContent=b.tag;$("count").textContent=String(current+1).padStart(2,"0")+" / "+String(cards.length).padStart(2,"0");
+    $("title").textContent=title;$("passage").textContent=passage;$("summary").textContent=summary;
     $("book-title").textContent="《"+b.book+"》";$("author").textContent=b.author;$("book-desc").textContent=b.desc;$("read-link").href=searchUrl(b.book);
+    $("chapter").textContent="章节出处 · "+chapter;
+    $("source-link").href=b.source;
     $("reveal").hidden=true;$("like").disabled=false;$("like").lastChild.textContent="感兴趣，看看是什么书";
     $("viewed").textContent="已探索 "+viewed+" 张卡片";
-    $("progress").innerHTML=books.map((_,i)=>'<span class="dot '+(i===current?'active':'')+'"></span>').join("");
-    const saved=favorites.has(current);$("save").setAttribute("aria-pressed",String(saved));$("save").firstChild.textContent=saved?"♥ 已收藏":"♡ 收藏这张卡片 ";$("saved-count").textContent=favorites.size?"("+favorites.size+")":"";
+    $("progress").textContent=books.length+" 本书 · "+cards.length+" 张卡片";
+    renderSave();
   }
-  $("skip").addEventListener("click",()=>{const card=$("card");card.classList.add("swap");setTimeout(()=>{current=(current+1)%books.length;viewed++;render();card.classList.remove("swap")},120)});
+  $("skip").addEventListener("click",()=>{const card=$("card");card.classList.add("swap");setTimeout(()=>{current=(current+1)%cards.length;viewed++;render();card.classList.remove("swap")},120)});
   $("like").addEventListener("click",()=>{$("reveal").hidden=false;$("like").disabled=true;$("like").lastChild.textContent="已找到这本书";});
-  $("save").addEventListener("click",()=>{if(favorites.has(current))favorites.delete(current);else favorites.add(current);try{localStorage.setItem("bookDiscoveryFavorites",JSON.stringify([...favorites]));}catch(e){}renderSave();});
-  function renderSave(){const saved=favorites.has(current);$("save").setAttribute("aria-pressed",String(saved));$("save").firstChild.textContent=saved?"♥ 已收藏":"♡ 收藏这张卡片 ";$("saved-count").textContent=favorites.size?"("+favorites.size+")":"";}
+  $("save").addEventListener("click", () => {
+    const { id } = cards[current];
+    if (favorites.has(id)) favorites.delete(id);
+    else favorites.add(id);
+    try {
+      localStorage.setItem(favoritesKey, JSON.stringify([...favorites]));
+    } catch {}
+    renderSave();
+  });
+  function renderSave(){const saved=favorites.has(cards[current].id);$("save").setAttribute("aria-pressed",String(saved));$("save").firstChild.textContent=saved?"♥ 已收藏":"♡ 收藏这张卡片 ";$("saved-count").textContent=favorites.size?"("+favorites.size+")":"";}
   render();
 </script>
 </body>
